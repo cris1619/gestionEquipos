@@ -64,8 +64,8 @@
                 <td>{{ $jugador->equipo->nombre_equipo }}</td>
                 
                 <td>
-                    <a href="" class="btn btn-outline-info"> 🔧 Editar</a>
-                    <form action="" method="POST" style="display: inline;">
+                    <a href="{{ route('Jugadores.edit', $jugador->id) }}" class="btn btn-outline-info"> 🔧 Editar</a>
+                    <form action="{{ route('Jugadores.destroy', $jugador->id) }}" method="POST" style="display: inline;">
                         @csrf
                         <button type="submit" class="btn btn-outline-danger"> 🗑️ Eliminar</button>
                     </form>

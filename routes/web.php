@@ -15,3 +15,6 @@ Route::post('/Equipos/update/{id}', [EquipoController::class, 'update'])->name('
 Route::get('/Jugadores/index', [JugadorController::class, 'index'])->name('Jugadores.index');
 Route::get('/Jugadores/create', [JugadorController::class, 'create'])->name('Jugadores.create');
 Route::post('/Jugadores/store', [JugadorController::class, 'store'])->name('Jugadores.store');
+Route::post('/Jugadores/destroy/{id}', [JugadorController::class, 'destroy'])->name('Jugadores.destroy');
+Route::get('/Jugadores/edit/{id}', [JugadorController::class, 'edit'])->name('Jugadores.edit');
+Route::post('/Jugadores/update/{id}', [JugadorController::class, 'update'])->name('Jugadores.update');

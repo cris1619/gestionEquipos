@@ -48,24 +48,31 @@ class JugadorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(jugador $jugador)
+    public function edit($id)
     {
-        //
+        $jugador = jugador::find($id);
+        $equipos = Equipo::all();
+        return view('Jugadores.edit', compact('jugador', 'equipos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, jugador $jugador)
+    public function update(Request $request, $id)
     {
-        //
+        $jugador = jugador::find($id);
+        $jugador->update($request->all());
+        return redirect()->route('Jugadores.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(jugador $jugador)
+    public function destroy($id)
     {
-        //
+        $jugador = jugador::findorFail($id);
+        $jugador->delete();
+
+        return redirect()->route('Jugadores.index');
     }
 }
