@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EquipoRequest;
 use App\Models\Equipo;
 use Illuminate\Http\Request;
 
@@ -27,16 +28,16 @@ class EquipoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EquipoRequest $request)
     {
         Equipo::create($request->all());
-        return redirect()->route('equipos.index');
+        return redirect()->route('equipos.index')->with('success', 'Equipo creado :)');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Equipo $equipo)
+    public function show(EquipoRequest $equipo)
     {
         //
     }
@@ -53,11 +54,11 @@ class EquipoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(EquipoRequest $request, $id)
     {
         $equipo = Equipo::findorFail($id);
         $equipo->update($request->all());
-        return redirect()->route('equipos.index');
+        return redirect()->route('equipos.index')->with('success', 'Equipo actualizado :)');
     }
 
     /**
@@ -68,6 +69,6 @@ class EquipoController extends Controller
         $equipo = Equipo::findorFail($id);
         $equipo->delete();
 
-        return redirect()->route('equipos.index');
+        return redirect()->route('equipos.index')->with('success', 'Equipo eliminado :)');
     }
 }

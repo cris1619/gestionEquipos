@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    
-    <title>Equipos</title>
-    
-</head>
+@extends('layouts.app')
 
-<body>
+@section('title')
+    Equipos
+@endsection
 
-    <link href="https://fonts.googleapis.com/css2?family=Rationale&display=swap" rel="stylesheet">
-    <style>
-        body{
-            font-family: "Rationale", sans-serif;
-        }
-
-    </style>
+@section('content')
 
 <div class="container">
 
@@ -58,7 +45,7 @@
                     <a href="{{ route('equipos.edit', $equipo->id) }}" class="btn btn-outline-info"> 🔧 Editar</a>
                     <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST" style="display: inline;">
                         @csrf
-                        <button type="submit" class="btn btn-outline-danger"> 🗑️ Eliminar</button>
+                        <button type="submit" class="btn btn-outline-danger" onclick="confirmarEliminacion(event)"> 🗑️ Eliminar</button>
                     </form>
                 </td>
             </tr>
@@ -69,6 +56,40 @@
     
 </div>
 
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-</body>
-</html>
+@if(session('success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'success',
+                title: '!EXITO!',
+                text: "{{ session('success') }}",
+                confirmButtonText: 'Aceptar',
+                timer: 3000
+            });
+        });
+    </script>
+@endif
+
+<script>
+        function confirmarEliminacion(event) {
+            event.preventDefault();
+            const form = event.target.closest('form');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+</script>
+
+@endsection

@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <title>Inicio</title>
-</head>
-<body>
+@extends('layouts.app')
 
-<link href="https://fonts.googleapis.com/css2?family=Rationale&display=swap" rel="stylesheet">
-    <style>
-        body{
-            font-family: "Rationale", sans-serif;
-        }
+@section('title')
+    Registro de Equipos
+@endsection
 
-    </style>
+@section('content')
 
     <div class="container mt-5">
 
@@ -32,24 +22,55 @@
 
                 <div class="mb-3">
                     <label for="nombre_equipo" class="form-label">Nombre del Equipo</label>
-                    <input type="text" class="form-control" id="nombre_equipo" name="nombre_equipo" > 
+                    <input type="text" class="form-control @error('nombre_equipo')
+                    is-invalid
+                    @enderror" id="nombre_equipo" name="nombre_equipo" > 
+                    @error('nombre_equipo')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
                 <div class="mb-3">
                     <label for="ciudad_equipo" class="form-label">Ciudad del Equipo</label>
-                    <input type="text" class="form-control" id="ciudad_equipo" name="ciudad_equipo">
+                    <input type="text" class="form-control @error('ciudad_equipo')
+                    is-invalid
+                    @enderror" id="ciudad_equipo" name="ciudad_equipo">
+                    @error('ciudad_equipo')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
+
                 <div class="mb-3">
                     <label for="pais_equipo" class="form-label">País del Equipo</label>
-                    <input type="text" class="form-control" id="pais_equipo" name="pais_equipo">
+                    <input type="text" class="form-control @error('pais_equipo')
+                    is-invalid
+                    @enderror" id="pais_equipo" name="pais_equipo">
+                    @error('pais_equipo')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
                 <div class="mb-3">
                     <label for="fecha_fundacion_equipo" class="form-label">Fecha Fundación del Equipo</label>
-                    <input type="date" class="form-control" id="fecha_fundacion_equipo" name="fecha_fundacion_equipo">
+                    <input type="date" class="form-control @error('fecha_fundacion_equipo')
+                    is-invalid
+                    @enderror" id="fecha_fundacion_equipo" name="fecha_fundacion_equipo" >
+                    @error('fecha_fundacion_equipo')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
                 <div class="mb-3">
                     <label for="liga_equipo" class="form-label">Liga del Equipo</label>
-                    <input type="text" class="form-control" id="liga_equipo" name="liga_equipo">
+                    <input type="text" class="form-control @error('liga_equipo')
+                    is-invalid
+                    @enderror" id="liga_equipo" name="liga_equipo" >
+                    @error('liga_equipo')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
                 <div class="mb-3">
                     <a href="{{ route('equipos.index') }}" class="btn btn-outline-secondary ">⬅️ Regresar</a>
                     <button type="submit" class="btn btn-outline-success">📥 Guardar</button>
@@ -58,9 +79,4 @@
         </div>
     </div>
 
-       
-            
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection
